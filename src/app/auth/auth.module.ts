@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from '../auth/store/reducers';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
     {
@@ -13,6 +15,11 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [RegisterComponent],
-    imports: [CommonModule, RouterModule.forChild(routes), ReactiveFormsModule],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        ReactiveFormsModule,
+        StoreModule.forFeature('auth', reducers),
+    ],
 })
 export class AuthModule {}
